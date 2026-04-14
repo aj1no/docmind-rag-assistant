@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+google-genai
+sentence-transformers
+faiss-cpu
+pydantic
+pydantic-settings
+python-dotenv
+tiktoken

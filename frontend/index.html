@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DocMind Cloud</title>
+    <!-- Premium Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Render Markdown properly -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar glass">
+            <div class="brand">
+                <div class="logo">DM</div>
+                <h2>DocMind Cloud</h2>
+            </div>
+            
+            <div class="sidebar-menu">
+                <p class="menu-label">WORKSPACE</p>
+                <ul>
+                    <li class="active">AI Search</li>
+                    <li>Documents</li>
+                    <li>Settings</li>
+                </ul>
+            </div>
+
+            <div class="sidebar-footer">
+                <div class="admin-panel">
+                    <p class="small-text">Local FAISS Index</p>
+                    <button id="ingest-btn" class="glass-btn pulse-glow">
+                        <span id="ingest-icon">⚡</span> 
+                        <span id="ingest-text">Re-Ingest Documents</span>
+                    </button>
+                    <p id="ingest-status" class="status-msg"></p>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Chat Area -->
+        <main class="chat-interface">
+            <header class="chat-header">
+                <h3>Retrieval-Augmented Generation (RAG)</h3>
+                <div class="badge">Gemini 2.5 Flash</div>
+            </header>
+
+            <div id="chat-feed" class="chat-feed">
+                <!-- Welcome Message -->
+                <div class="message ai-message slip-in">
+                    <div class="avatar ai-avatar">AI</div>
+                    <div class="message-content glass-card">
+                        <p>Welcome to <strong>DocMind Cloud</strong>. I have indexed your technical documentation.</p>
+                        <p>Ask me anything about Workspaces, Billing, File Uploads, or Authentication.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Input Mechanism -->
+            <div class="input-container">
+                <div class="input-wrapper glass">
+                    <textarea 
+                        id="user-input" 
+                        placeholder="Ask about the DocMind architecture..." 
+                        rows="1"
+                    ></textarea>
+                    <button id="send-btn" class="submit-btn" aria-label="Send query">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </button>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
