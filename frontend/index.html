@@ -25,10 +25,10 @@
             
             <div class="sidebar-menu">
                 <p class="menu-label">WORKSPACE</p>
-                <ul>
-                    <li class="active">AI Search</li>
-                    <li>Documents</li>
-                    <li>Settings</li>
+                <ul id="nav-menu">
+                    <li class="active" data-target="view-search">AI Search</li>
+                    <li data-target="view-documents">Documents</li>
+                    <li data-target="view-settings">Settings</li>
                 </ul>
             </div>
 
@@ -46,12 +46,13 @@
 
         <!-- Main Chat Area -->
         <main class="chat-interface">
-            <header class="chat-header">
-                <h3>Retrieval-Augmented Generation (RAG)</h3>
-                <div class="badge">Gemini 2.5 Flash</div>
-            </header>
+            <div id="view-search" class="view-section active" style="display: flex; flex-direction: column; height: 100%;">
+                <header class="chat-header">
+                    <h3>Retrieval-Augmented Generation (RAG)</h3>
+                    <div class="badge">Gemini 2.5 Flash</div>
+                </header>
 
-            <div id="chat-feed" class="chat-feed">
+                <div id="chat-feed" class="chat-feed">
                 <!-- Welcome Message -->
                 <div class="message ai-message slip-in">
                     <div class="avatar ai-avatar">AI</div>
@@ -75,6 +76,59 @@
                     </button>
                 </div>
             </div>
+            </div> <!-- End view-search -->
+
+            <!-- Documents View -->
+            <div id="view-documents" class="view-section" style="display:none; padding: 40px; overflow-y: auto;">
+                <h2 style="margin-bottom:20px; font-weight:500;">Indexed Documents</h2>
+                <p style="color:var(--text-secondary); margin-bottom: 30px;">These specific Markdown documents are currently residing inside the local FAISS Vector Database for searching.</p>
+                
+                <div class="docs-grid" style="display:grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px;">
+                    <div class="glass-card"><h4>📄 api_reference.md</h4><p style="font-size:12px; color:var(--text-secondary); margin-top:8px;">Endpoints and base URLs</p></div>
+                    <div class="glass-card"><h4>📄 authentication.md</h4><p style="font-size:12px; color:var(--text-secondary); margin-top:8px;">OAuth2 flows & API Keys</p></div>
+                    <div class="glass-card"><h4>📄 billing.md</h4><p style="font-size:12px; color:var(--text-secondary); margin-top:8px;">SaaS Plans and limits</p></div>
+                    <div class="glass-card"><h4>📄 document_upload.md</h4><p style="font-size:12px; color:var(--text-secondary); margin-top:8px;">File storage constraints</p></div>
+                    <div class="glass-card"><h4>📄 search_indexing.md</h4><p style="font-size:12px; color:var(--text-secondary); margin-top:8px;">FAISS engine rules</p></div>
+                    <div class="glass-card"><h4>📄 troubleshooting.md</h4><p style="font-size:12px; color:var(--text-secondary); margin-top:8px;">Standard error codes</p></div>
+                    <div class="glass-card"><h4>📄 users_roles.md</h4><p style="font-size:12px; color:var(--text-secondary); margin-top:8px;">RBAC specific structures</p></div>
+                    <div class="glass-card"><h4>📄 workspaces.md</h4><p style="font-size:12px; color:var(--text-secondary); margin-top:8px;">Multi-tenant partitions</p></div>
+                </div>
+            </div>
+
+            <!-- Settings View -->
+            <div id="view-settings" class="view-section" style="display:none; padding: 40px;">
+                <h2 style="margin-bottom:20px; font-weight:500;">System Settings</h2>
+                <p style="color:var(--text-secondary); margin-bottom: 30px;">Configuration and control panel for the RAG architecture.</p>
+                
+                <div class="glass-card" style="max-width: 600px;">
+                    
+                    <div style="display:flex; justify-content:space-between; align-items:center; border-bottom: 1px solid var(--glass-border); padding-bottom:16px; margin-bottom:16px;">
+                        <div>
+                            <h4 style="margin-bottom: 4px;">LLM Engine</h4>
+                            <p style="font-size:12px; color:var(--text-secondary);">Currently active generative model</p>
+                        </div>
+                        <div class="badge">gemini-2.5-flash</div>
+                    </div>
+                    
+                    <div style="display:flex; justify-content:space-between; align-items:center; border-bottom: 1px solid var(--glass-border); padding-bottom:16px; margin-bottom:16px;">
+                        <div>
+                            <h4 style="margin-bottom: 4px;">Vector Database</h4>
+                            <p style="font-size:12px; color:var(--text-secondary);">Local similarity search engine</p>
+                        </div>
+                        <div class="badge" style="background: rgba(59, 130, 246, 0.15); color: #93c5fd; border-color: rgba(59, 130, 246, 0.3);">FAISS (Memory)</div>
+                    </div>
+                    
+                     <div style="display:flex; justify-content:space-between; align-items:center;">
+                        <div>
+                            <h4 style="margin-bottom: 4px;">Clear Context</h4>
+                            <p style="font-size:12px; color:var(--text-secondary);">Erases all messages from the current visual session</p>
+                        </div>
+                        <button id="clear-chat-btn" class="glass-btn pulse-glow" style="width: auto; padding: 8px 16px;">Clear Chat</button>
+                    </div>
+
+                </div>
+            </div>
+
         </main>
     </div>
     

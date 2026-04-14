@@ -164,4 +164,39 @@ document.addEventListener("DOMContentLoaded", () => {
             }, 3000);
         }
     });
+
+    // Navigation Tabs Logic
+    const navItems = document.querySelectorAll('#nav-menu li');
+    const viewSections = document.querySelectorAll('.view-section');
+
+    navItems.forEach(item => {
+        item.addEventListener('click', () => {
+            // Update active link
+            navItems.forEach(nav => nav.classList.remove('active'));
+            item.classList.add('active');
+
+            // Switch views
+            const targetId = item.getAttribute('data-target');
+            viewSections.forEach(section => {
+                if (section.id === targetId) {
+                    section.style.display = section.id === 'view-search' ? 'flex' : 'block';
+                } else {
+                    section.style.display = 'none';
+                }
+            });
+        });
+    });
+
+    // Settings: Clear Chat Logic
+    const clearChatBtn = document.getElementById('clear-chat-btn');
+    if (clearChatBtn) {
+        clearChatBtn.addEventListener('click', () => {
+            const messages = chatFeed.querySelectorAll('.message');
+            // Keep the first welcome message (index 0)
+            for (let i = 1; i < messages.length; i++) {
+                messages[i].remove();
+            }
+            navItems[0].click(); // Send user back to Search
+        });
+    }
 });
