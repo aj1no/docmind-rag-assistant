@@ -15,14 +15,15 @@ The documentation schema located within `docs/` is heavily inspired by Stripe's 
 2. **Chunking**: Splits text into 400–800 token boundary subsets while preserving metadata.
 3. **Embeddings**: Utilizes the local, lightweight `sentence-transformers` model (`all-MiniLM-L6-v2`) to convert text into high-dimensional vectors.
 4. **Vector Store**: Rebuilds a local, in-memory `FAISS` index for instantaneous semantic similarity matching.
-5. **Generation**: Dispatches an API call to `OpenAI` (`gpt-4o-mini`). The system prompt is engineered to *prevent hallucination* by strictly binding the LLM to the retrieved chunks, ensuring it cites documents appropriately.
+5. **Generation**: Dispatches an API call to **Google Vertex AI / AI Studio (`gemini-2.5-flash`)**. The system prompt is engineered to *prevent hallucination* by strictly binding the LLM to the retrieved chunks, ensuring it cites documents appropriately.
 
 ## Technologies Used
 - **Python**: Core Language
 - **FastAPI / Uvicorn**: High-performance REST interface
 - **FAISS**: Local Vector Storage Engine
 - **Sentence-Transformers**: Open-source Embedding models
-- **OpenAI (gpt-4o-mini)**: Generation / Synthesis
+- **Google Gemini SDK**: For generation (`gemini-2.5-flash`)
+- **Vanilla JS/HTML/CSS**: Highly customized, responsive single page application frontend with Glassmorphism UI.
 - **Tiktoken**: Precise token counting
 
 ## How to Run
@@ -38,7 +39,7 @@ The documentation schema located within `docs/` is heavily inspired by Stripe's 
     Copy `.env.example` to `.env` and insert your API keys:
     ```bash
     cp .env.example .env
-    # Edit .env and supply your OPENAI_API_KEY
+    # Edit .env and supply your GEMINI_API_KEY
     ```
 
 3. **Start the API Server**
